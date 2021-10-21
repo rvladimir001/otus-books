@@ -1,19 +1,15 @@
 <template>
-  <BooksList v-bind:books="books"/>
-  <AuthorsList v-bind:books="books"/>
+  <div>
+     <router-view/>
+  </div>
+
 </template>
 
 <script>
-import BooksList from './components/BooksList.vue'
-import AuthorsList from './components/AuthorsList.vue'
 import axios from "axios";
 
 export default {
   name: 'App',
-  components: {
-    BooksList,
-    AuthorsList
-  },
   data() {
     return {
       books: [],
