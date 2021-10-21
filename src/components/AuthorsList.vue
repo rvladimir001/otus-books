@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Авторы</h2>
+    <button сlass="show-modal-button" @click="showModal">Добавить автора</button>
     <table>
       <tr>
         <th>Автор</th>
@@ -19,14 +20,22 @@
         <td>{{ book.title }}</td>
       </tr>
     </table>
+    <AuthorsForm ref="modal"></AuthorsForm>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import AuthorsForm from "./AuthorsForm.vue";
+import Vue from "vue";
+
+Vue.component('AuthorsForm', AuthorsForm);
 
 export default {
   name: 'AuthorsList',
+  comments: {
+    AuthorsForm
+  },
   created() {
     this.getBooks(1)
   },
@@ -34,7 +43,10 @@ export default {
     ...mapGetters(["books"])
   },
   methods: {
-    ...mapActions(["getBooks"])
+    ...mapActions(["getBooks"]),
+    showModal: function () {
+      this.$refs.modal.show = true
+    }
   }
 }
 </script>

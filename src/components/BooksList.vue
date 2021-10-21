@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2>Литература</h2>
+
+    <button сlass="show-modal-button" @click="showModal">Добавить книгу</button>
+
     <table>
       <tr>
         <th>Название</th>
@@ -21,14 +24,22 @@
         </td>
       </tr>
     </table>
+    <BooksForm ref="modal"></BooksForm>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex"
+import BooksForm from "./BooksForm.vue";
+import Vue from 'vue'
+
+Vue.component('BooksForm', BooksForm);
 
 export default {
   name: 'BooksList',
+  comments: {
+    BooksForm
+  },
   data() {
     return {}
   },
@@ -39,7 +50,10 @@ export default {
     ...mapGetters(["books"])
   },
   methods: {
-    ...mapActions(["getBooks"])
+    ...mapActions(["getBooks"]),
+    showModal: function () {
+      this.$refs.modal.show = true
+    }
   }
 
 }
