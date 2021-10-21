@@ -1,6 +1,9 @@
 <template>
   <div>
-     <router-view/>
+    <button @click="goTo('/home')">Главная</button>
+    <button @click="goTo('/booksList')">Книги</button>
+    <button @click="goTo('/authorsList')">Авторы</button>
+    <router-view/>
   </div>
 
 </template>
@@ -25,7 +28,10 @@ export default {
           .then(response => {
             this.books = response.data.results;
           })
-    }
+    },
+    goTo(link) {
+      this.$router.push(link)
+    },
   }
 }
 </script>

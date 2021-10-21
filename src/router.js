@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './components/Home.vue';
 import BooksList from './components/BooksList.vue'
 import AuthorsList from './components/AuthorsList.vue';
 
@@ -11,8 +12,13 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'BooksList',
-            component: BooksList
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: Home
         },
         {
             path: '/booksList',
