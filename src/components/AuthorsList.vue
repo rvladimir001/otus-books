@@ -10,14 +10,19 @@
         <th>Книги</th>
       </tr>
       <tr v-for="book in books" :key="book.id">
-        <td>{{ book.authors[0].name }}</td>
-        <td>
+        <td v-if="book.authors.length>0">
+          {{ book.authors[0].name }}
+        </td>
+        <td v-if="book.authors.length>0">
           {{ book.authors[0].birth_year }}
         </td>
-        <td>
+        <td v-if="book.authors.length>0">
           {{ book.languages[0] }}
         </td>
-        <td>{{ book.title }}</td>
+        <td v-if="book.authors.length>0">
+          {{ book.title }}
+        </td>
+
       </tr>
     </table>
     <AuthorsForm ref="modal"></AuthorsForm>
