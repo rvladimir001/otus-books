@@ -2,7 +2,6 @@
   <div>
     <h2>Литература</h2>
     <button сlass="show-modal-button" @click="showModal">Добавить книгу</button>
-
     <table>
       <tr>
         <th>ISBN</th>
@@ -14,12 +13,19 @@
         <th>Категория</th>
       </tr>
       <tr v-for="book in books" :key="book.id">
+        <td>{{ book.ISBN }}</td>
         <td>{{ book.title }}</td>
         <td>
           <span v-for="athor in book.authors" :key="athor.name">{{ athor.name }}</span>
         </td>
         <td>
-          <span v-for="lang in book.languages" :key="lang">{{ lang }}</span>
+          <img :src="book.poster" alt="Постер книги">
+        </td>
+        <td>
+          {{ book.description }}
+        </td>
+        <td>
+          {{ book.price }}
         </td>
         <td>
           <span v-for="bookshelv in book.bookshelves" :key="bookshelv">{{ bookshelv }}</span>

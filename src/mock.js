@@ -8,7 +8,8 @@ const links = [
     "https://energo.mos.ru/upload/medialibrary/cb1/knigi.jpg",
     "https://vseodetyah.com/editorfiles/devushka-s-knigoi-04.jpg",
     "https://avatars.mds.yandex.net/get-zen_doc/4395091/pub_60abf08ae7169a0881f5516d_60abf12ad0011619649daa95/scale_1200"
-]
+];
+
 const country = [
     "Russia",
     "England",
@@ -17,16 +18,20 @@ const country = [
     "Italy",
     "Spain",
     "France"
-]
-const gender = ["Male", "Female"]
+];
+
+const gender = ["Male", "Female"];
+
 function addMockData(data) {
     for (const elem of data) {
         elem["ISBN"] = Math.floor(Math.random() * (9999999999999 - 8780882330693) + 8780882330693);
         elem["description"] = text;
         elem["price"] = `${Math.floor(Math.random() * (60 - 20) + 20)}$`;
         elem["poster"] = links[Math.floor(Math.random() * (7 - 1) + 1)];
-        elem.authors[0]["country"] = country[Math.floor(Math.random() * (6 - 1) + 1)];
-        elem.authors[0]["gender"] = gender[Math.floor(Math.random() * (2 - 1) + 1)];
+        if (elem.authors.length > 0) {
+            elem.authors[0]["country"] = country[Math.floor(Math.random() * (6 - 1) + 1)];
+            elem.authors[0]["gender"] = gender[Math.floor(Math.random() * (2 - 1) + 1)];
+        }
     }
 }
 
