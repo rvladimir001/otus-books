@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import {addMockData} from "./mock.js"
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     },
     mutations: {
         setBooks(state, booksList) {
+            addMockData(booksList)
             state.books = booksList;
         },
         addNewBook(state, book) {
