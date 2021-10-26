@@ -1,8 +1,8 @@
 <template>
   <div>
     <button @click="goTo('/home')">Главная</button>
-    <button @click="goTo('/booksList')">Книги</button>
-    <button @click="goTo('/authorsList')">Авторы</button>
+    <button @click="goTo('/books')">Книги</button>
+    <button @click="goTo('/authors')">Авторы</button>
     <router-view/>
   </div>
 

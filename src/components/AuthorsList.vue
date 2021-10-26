@@ -6,7 +6,8 @@
       <tr>
         <th>Автор</th>
         <th>Год рожения</th>
-        <th>Язык</th>
+        <th>Пол</th>
+        <th>Страна</th>
         <th>Книги</th>
       </tr>
       <tr v-for="book in books" :key="book.id">

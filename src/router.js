@@ -21,13 +21,13 @@ export default new Router({
             component: Home
         },
         {
-            path: '/booksList',
-            name: 'BooksList',
+            path: '/books',
+            name: 'Books',
             component: BooksList
         },
         {
-            path: '/authorsList',
-            name: 'AuthorsList',
+            path: '/authors',
+            name: 'Authors',
             component: AuthorsList
         },
     ]

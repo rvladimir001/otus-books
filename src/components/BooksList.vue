@@ -5,9 +5,12 @@
 
     <table>
       <tr>
+        <th>ISBN</th>
         <th>Название</th>
         <th>Автор</th>
-        <th>Язык</th>
+        <th>Постер</th>
+        <th>Краткое описание</th>
+        <th>Цена</th>
         <th>Категория</th>
       </tr>
       <tr v-for="book in books" :key="book.id">
