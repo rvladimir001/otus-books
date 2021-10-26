@@ -8,16 +8,16 @@
       <slot name="body">
         <div class="modal-content">
           <ul>
-            <li><label>Наименовние<input type="text"></label></li>
-            <li><label>Автор<input type="text"></label></li>
-            <li><label>Язык издания<input type="text"></label></li>
-            <li><label>Категория<input type="text"></label></li>
+            <li><label>Наименовние<input type="text" v-model="newBook.title"></label></li>
+            <li><label>Автор<input type="text" v-model="newBook.authors[0].name"></label></li>
+            <li><label>Язык издания<input type="text" v-model="newBook.languages"></label></li>
+            <li><label>Категория<input type="text" v-model="newBook.bookshelves"></label></li>
           </ul>
         </div>
       </slot>
       <slot name="footer">
         <div class="modal-footer">
-          <button class="modal-footer__button" @click="closeModal">
+          <button class="modal-footer__button" @click="save">
             Сохранить
           </button>
           <button class="modal-footer__button" @click="closeModal">
@@ -30,23 +30,47 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex"
+
 export default {
   name: "BooksForm",
   data: function () {
     return {
-      show: false
+      show: false,
+      book: {
+        "title": "",
+        "authors": [
+          {
+            "name": "",
+            "birth_year": "",
+            "death_year": ""
+          }
+        ],
+        "bookshelves": [],
+        "languages": [],
+      },
+      newBook: {}
     }
   },
+  created() {
+    this.newBook = Object.assign({}, this.book)
+  },
   methods: {
-    closeModal: function () {
-      this.show = false
+    ...mapMutations(["addNewBook"]),
+    closeModal() {
+      this.show = false;
+      this.newBook = Object.assign({}, this.book)
+    },
+    save() {
+      this.newBook.languages = this.newBook.languages.split(",")
+      this.addNewBook(this.newBook)
+      this.closeModal()
     }
   }
 }
 </script>
 
-<style scoped
-       lang="scss">
+<style scoped lang="scss">
 .modal-shadow {
   position: absolute;
   top: 0;
