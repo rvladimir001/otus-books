@@ -32,22 +32,14 @@
         </td>
       </tr>
     </table>
-    <BooksForm ref="modal"></BooksForm>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex"
-import BooksForm from "./BooksForm.vue";
-import Vue from 'vue'
-
-Vue.component('BooksForm', BooksForm);
 
 export default {
   name: 'BooksList',
-  comments: {
-    BooksForm
-  },
   data() {
     return {}
   },

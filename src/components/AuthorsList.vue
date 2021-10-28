@@ -26,25 +26,16 @@
         <td v-if="book.authors.length>0">
           {{ book.title }}
         </td>
-
       </tr>
     </table>
-    <AuthorsForm ref="modal"></AuthorsForm>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import AuthorsForm from "./AuthorsForm.vue";
-import Vue from "vue";
-
-Vue.component('AuthorsForm', AuthorsForm);
 
 export default {
   name: 'AuthorsList',
-  comments: {
-    AuthorsForm
-  },
   created() {
     this.getBooks(1)
   },
@@ -53,9 +44,6 @@ export default {
   },
   methods: {
     ...mapActions(["getBooks"]),
-    showModal: function () {
-      this.$refs.modal.show = true
-    }
   }
 }
 </script>

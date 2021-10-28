@@ -3,6 +3,8 @@
     <button @click="goTo('/home')">Главная</button>
     <button @click="goTo('/books')">Книги</button>
     <button @click="goTo('/authors')">Авторы</button>
+    <button @click="goTo('/newbooks')">Добавить книгу</button>
+    <button @click="goTo('/newauthor')">Добавить автора</button>
     <router-view/>
   </div>
 
