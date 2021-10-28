@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Авторы</h2>
-    <button сlass="show-modal-button" @click="showModal">Добавить автора</button>
     <table>
       <tr>
         <th>Автор</th>

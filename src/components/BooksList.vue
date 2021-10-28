@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Литература</h2>
-    <button сlass="show-modal-button" @click="showModal">Добавить книгу</button>
     <table>
       <tr>
         <th>ISBN</th>
