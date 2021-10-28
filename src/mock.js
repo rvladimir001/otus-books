@@ -30,7 +30,7 @@ function addMockData(data) {
         elem["poster"] = links[Math.floor(Math.random() * (7 - 1) + 1)];
         if (elem.authors.length > 0) {
             elem.authors[0]["country"] = country[Math.floor(Math.random() * (6 - 1) + 1)];
-            elem.authors[0]["gender"] = gender[Math.floor(Math.random() * (2 - 1) + 1)];
+            elem.authors[0]["gender"] = gender[Number(Math.random() >= .5)];
         }
     }
 }

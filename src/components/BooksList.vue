@@ -19,7 +19,7 @@
           <span v-for="athor in book.authors" :key="athor.name">{{ athor.name }}</span>
         </td>
         <td>
-          <img :src="book.poster" alt="Постер книги">
+          <img :src="book.poster" style="width: 200px" alt="Постер книги">
         </td>
         <td>
           {{ book.description }}
