@@ -18,7 +18,10 @@
           {{ book.authors[0].birth_year }}
         </td>
         <td v-if="book.authors.length>0">
-          {{ book.languages[0] }}
+          {{ book.authors[0].gender }}
+        </td>
+        <td v-if="book.authors.length>0">
+          {{ book.authors[0].country }}
         </td>
         <td v-if="book.authors.length>0">
           {{ book.title }}
