@@ -1,4 +1,4 @@
-# books
+# otus-books
 
 ## Project setup
 ```

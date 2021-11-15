@@ -1,61 +1,76 @@
 <template>
+  <div>
     <div>
-
-        <div>
-          <ul>
-            <li><label>Наименовние<input type="text" v-model="newBook.title"></label></li>
-            <li><label>Автор<input type="text" v-model="newBook.authors[0].name"></label></li>
-            <li><label>Язык издания<input type="text" v-model="newBook.languages"></label></li>
-            <li><label>Категория<input type="text" v-model="newBook.bookshelves"></label></li>
-          </ul>
-        </div>
-
-        <div>
-          <button @click="save">
-            Сохранить
-          </button>
-        </div>
-
+      <ul>
+        <li>
+          <label>ISBN<input type="text" v-model="ISBN" /></label>
+        </li>
+        <li>
+          <label>Наименовние<input type="text" v-model="title" /></label>
+        </li>
+        <li>
+          <label>Автор<input type="text" v-model="authors" /></label>
+        </li>
+        <li>
+          <label
+            >Краткое описание<input type="text" v-model="description"
+          /></label>
+        </li>
+        <li>
+          <label>Цена<input type="text" v-model="price" /></label>
+        </li>
+        <li>
+          <label>Категория<input type="text" v-model="bookshelves" /></label>
+        </li>
+      </ul>
     </div>
-
+    <div>
+      <button @click="save">Сохранить</button>
+    </div>
+  </div>
 </template>
 
 <script>
-import {mapMutations} from "vuex"
+import { onMounted, ref, reactive } from "vue";
 
 export default {
   name: "BooksForm",
-  data: function () {
+  emits: ["add-book"],
+  setup(props, { emit }) {
+    const book = reactive({});
+    const ISBN = ref("");
+    const title = ref("");
+    const authors = ref("");
+    const price = ref("");
+    const description = ref("");
+    const bookshelves = ref("");
+    let newBook = reactive({});
+    function save() {
+      newBook.value = {
+        ISBN: ISBN,
+        title: title,
+        authors: [authors],
+        price: price,
+        description: description,
+        bookshelves: [bookshelves],
+      };
+      emit("add-book", newBook);
+    }
+    onMounted(() => {
+      newBook = Object.assign({}, book);
+    });
     return {
-      show: false,
-      book: {
-        "title": "",
-        "authors": [
-          {
-            "name": "",
-            "birth_year": "",
-            "death_year": ""
-          }
-        ],
-        "bookshelves": [],
-        "languages": [],
-      },
-      newBook: {}
-    }
+      save,
+      ISBN,
+      title,
+      authors,
+      price,
+      description,
+      newBook,
+      bookshelves,
+    };
   },
-  created() {
-    this.newBook = Object.assign({}, this.book)
-  },
-  methods: {
-    ...mapMutations(["addNewBook"]),
-    save() {
-      this.newBook.languages = this.newBook.languages.split(",")
-      this.addNewBook(this.newBook)
-    }
-  }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
