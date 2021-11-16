@@ -29,6 +29,7 @@ function addMockData(data) {
     );
     elem["description"] = text;
     elem["price"] = `${Math.floor(Math.random() * (60 - 20) + 20)}$`;
+    elem["year"] = `${Math.floor(Math.random() * (2000 - 1760) + 1760)}`;
     elem["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
     if (elem.authors.length > 0) {
       elem.authors[0]["country"] =
