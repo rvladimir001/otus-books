@@ -78,11 +78,6 @@ export default {
             Object.assign({}, book)
           );
         })
-        // .then(() => {
-        //   selectComponent(
-        //     componentsNames.value[0].name,
-        //   );
-        // });
     };
     const addNewBook = (book) => {
       basicData.value.unshift(addMockPoster(book.value));
@@ -153,7 +148,8 @@ h1 {
 }
 
 table {
-font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+width: 90%;
+  margin: 0 auto;
 border-collapse: collapse;
 color: #000;
 }
@@ -171,6 +167,52 @@ background: white;
 }
 tr:nth-child(even) {
 background: #dae2e4;
+}
+
+ul li {
+  margin: 10px;
+  list-style-type: none;
+}
+
+ul li input,
+ul li textarea {
+  width: 350px;
+  border: 1px solid #dae2e4;
+  padding: 5px;
+}
+
+ul li textarea {
+  max-width: 350px;
+  min-width: 350px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+ul li input:active,
+ul li input:hover,
+ul li input:focus,
+ul li textarea:active,
+ul li textarea:hover,
+ul li textarea:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.btn {
+  width: 100px;
+  height: 20px;
+  background: #acbec2;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+.btn:hover {
+ box-shadow: inset 0px 0px 16px 13px rgba(355,355,355,0.3)
+}
+.btn:active {
+  box-shadow: inset 0px 0px 6px 3px rgba(0,0,0,0.3)
 }
 
 </style>

@@ -3,39 +3,41 @@
     <div>
       <ul>
         <li>
-          <label>ISBN<input type="text" v-model="ISBN" /></label>
+          <label><input type="text" v-model="ISBN" placeholder="ISBN"/></label>
         </li>
         <li>
-          <label>Наименовние<input type="text" v-model="title" /></label>
+          <label><input type="text" v-model="title" placeholder="Наименовние"/></label>
         </li>
         <li>
-          <label>Автор<input type="text" v-model="authors" /></label>
+          <label><input type="text" v-model="authors" placeholder="Автор"/></label>
+        </li>
+        <li>
+          <label><input type="text" v-model="price" placeholder="Цена"/></label>
+        </li>
+        <li>
+          <label><input type="text" v-model="bookshelves" placeholder="Категория"/></label>
         </li>
         <li>
           <label
-            >Краткое описание<input type="text" v-model="description"
+          ><textarea type="text" v-model="description" placeholder="Краткое описание"
           /></label>
         </li>
-        <li>
-          <label>Цена<input type="text" v-model="price" /></label>
-        </li>
-        <li>
-          <label>Категория<input type="text" v-model="bookshelves" /></label>
-        </li>
+
       </ul>
     </div>
     <div>
-      <button @click="save">Сохранить</button>
+      <div class="btn" @click="save">Сохранить</div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted, ref, reactive } from "vue";
+import {onMounted, ref, reactive} from "vue";
+
 export default {
   name: "BooksForm",
   emits: ["addBooks"],
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const book = reactive({});
     const ISBN = ref("");
     const title = ref("");
@@ -80,4 +82,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -3,24 +3,24 @@
     <div>
       <ul>
         <li>
-          <label>ФИО<input type="text" v-model="authors" /></label>
+          <label><input type="text" v-model="authors" placeholder="ФИО"/></label>
         </li>
         <li>
-          <label>Год рождения<input type="text" v-model="birth_year" /></label>
+          <label><input type="text" v-model="birth_year" placeholder="Год рождения"/></label>
         </li>
         <li>
-          <label>Пол<input type="text" v-model="gender" /></label>
+          <label><input type="text" v-model="gender" placeholder="Пол"/></label>
         </li>
         <li>
-          <label>Страна<input type="text" v-model="country" /></label>
+          <label><input type="text" v-model="country" placeholder="Страна"/></label>
         </li>
         <li>
-          <label>Книги<input type="text" v-model="title" /></label>
+          <label><input type="text" v-model="title" placeholder="Книги"/></label>
         </li>
       </ul>
     </div>
     <div>
-      <button @click="save">Сохранить</button>
+      <div class="btn" @click="save">Сохранить</div>
     </div>
   </div>
 </template>
@@ -68,4 +68,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -29,7 +29,10 @@
           <td>{{ book.description }}</td>
           <td>{{ book.price }}</td>
           <td>{{ book.bookshelves.join(", ") }}</td>
-          <td><button @click="del(book.id)">Удалить</button></td>
+          <td>
+            <div class="btn" @click="del(book.id)">Удалить</div>
+<!--            <button @click="del(book.id)"> Удалить</button>-->
+          </td>
         </template>
       </tr>
     </table>
@@ -80,4 +83,5 @@ export default {
     outline: 0;
     outline-offset: 0;
 }
+
 </style>
