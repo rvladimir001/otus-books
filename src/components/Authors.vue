@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Авторы</h2>
     <table>
       <tr>
         <th>Автор</th>
@@ -11,19 +10,19 @@
       </tr>
       <tr v-for="author in dataList" :key="author.id">
         <template v-if="statusAuthor(author)">
-          <td v-if="author.authors.length > 1">
+          <td>
             {{ author.authors[0].name }}
           </td>
-          <td v-if="author.authors.length > 0">
+          <td>
             {{ author.authors[0].birth_year }}
           </td>
-          <td v-if="author.authors.length > 0">
+          <td>
             {{ author.authors[0].gender }}
           </td>
-          <td v-if="author.authors.length > 0">
+          <td>
             {{ author.authors[0].country }}
           </td>
-          <td v-if="author.authors.length > 0">
+          <td>
             {{ author.title }}
           </td>
         </template>

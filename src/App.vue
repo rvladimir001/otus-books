@@ -1,4 +1,8 @@
 <template>
+  <header>
+      <h1>OTUS-BOOKS-AAP</h1>
+  </header>
+
   <div class="controls">
     <div
       v-for="component in componentsNames"
@@ -42,25 +46,25 @@ export default {
       {
         id: 1,
         component: "Books",
-        name: "Books",
+        name: "Книги",
         class: true,
       },
       {
         id: 2,
         component: "Authors",
-        name: "Authors",
+        name: "Авторы",
         class: false,
       },
       {
         id: 3,
         component: "BooksForm",
-        name: "Add Books",
+        name: "Добавить книгу",
         class: false,
       },
       {
         id: 4,
         component: "AuthorsForm",
-        name: "Add Authors",
+        name: "Добавить автора",
         class: false,
       },
     ]);
@@ -74,11 +78,11 @@ export default {
             Object.assign({}, book)
           );
         })
-        .then(() => {
-          selectComponent(
-            componentsNames.value[0].name,
-          );
-        });
+        // .then(() => {
+        //   selectComponent(
+        //     componentsNames.value[0].name,
+        //   );
+        // });
     };
     const addNewBook = (book) => {
       basicData.value.unshift(addMockPoster(book.value));
@@ -112,7 +116,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 body {
@@ -139,4 +142,35 @@ body {
 .active {
   font-weight: bold;
 }
+
+header {
+  background: linear-gradient(90deg,#a64fc5,#4f54e6);
+  text-align: left;
+  padding: 20px;
+}
+h1 {
+  color: #fff;
+}
+
+table {
+font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+border-collapse: collapse;
+color: #000;
+}
+
+th {
+border-bottom: 2px solid #a9a9a9;
+padding: 10px;
+text-align: center;
+}
+td {
+padding: 10px;
+}
+tr:nth-child(odd) {
+background: white;
+}
+tr:nth-child(even) {
+background: #dae2e4;
+}
+
 </style>

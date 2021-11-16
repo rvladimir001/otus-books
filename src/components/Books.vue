@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h2>Литература</h2>
-    <input type="text" v-model="searchBook" />
+    <div class="search-block">
+          <input type="text" v-model="searchBook" placeholder="Поиск..."/>
+    </div>
     <table>
       <tr>
         <th>ISBN</th>
@@ -65,4 +66,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.search-block {
+  text-align: left;
+}
+.search-block input {
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #dae2e4;
+  margin: 20px;
+}
+.search-block input:active, .search-block input:hover, .search-block input:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+</style>
