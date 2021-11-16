@@ -12,6 +12,7 @@
         <th>Краткое описание</th>
         <th>Цена</th>
         <th>Категория</th>
+        <th>Действие</th>
       </tr>
       <tr v-for="book in actualBooksList" :key="book.id">
         <template v-if="book.price">
@@ -27,6 +28,7 @@
           <td>{{ book.description }}</td>
           <td>{{ book.price }}</td>
           <td>{{ book.bookshelves.join(", ") }}</td>
+          <td><button @click="del(book.id)">Удалить</button></td>
         </template>
       </tr>
     </table>
@@ -53,7 +55,12 @@ export default {
       }
       return props.dataList;
     });
-    return { props, searchBook, actualBooksList };
+    const del = (id) => {
+      const idx = props.dataList.indexOf(props.dataList.find((book)=>book.id === id))
+      // eslint-disable-next-line vue/no-mutating-props
+      props.dataList.splice(idx, 1);
+    };
+    return { props, searchBook, actualBooksList, del };
   },
 };
 </script>

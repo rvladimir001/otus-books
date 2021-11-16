@@ -38,7 +38,6 @@ export default {
   props: ["dataList"],
   setup(props) {
     const statusAuthor = (author) => {
-      console.log(author);
       return author.authors.length > 0 && author.authors[0].birth_year !== "";
     };
     return { props, statusAuthor };

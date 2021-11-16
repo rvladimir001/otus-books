@@ -16,7 +16,6 @@
     @addBooks="addNewBook"
     @addAuthors="addNewAuthors"
   ></component>
-  <pre>{{basicData}}</pre>
 </template>
 
 <script>
