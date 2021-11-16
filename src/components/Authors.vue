@@ -10,21 +10,23 @@
         <th>Книги</th>
       </tr>
       <tr v-for="author in dataList" :key="author.id">
-        <td v-if="author.authors.length > 0">
-          {{ author.authors[0].name }}
-        </td>
-        <td v-if="author.authors.length > 0">
-          {{ author.authors[0].birth_year }}
-        </td>
-        <td v-if="author.authors.length > 0">
-          {{ author.authors[0].gender }}
-        </td>
-        <td v-if="author.authors.length > 0">
-          {{ author.authors[0].country }}
-        </td>
-        <td v-if="author.authors.length > 0">
-          {{ author.title }}
-        </td>
+        <template v-if="statusAuthor(author)">
+          <td v-if="author.authors.length > 1">
+            {{ author.authors[0].name }}
+          </td>
+          <td v-if="author.authors.length > 0">
+            {{ author.authors[0].birth_year }}
+          </td>
+          <td v-if="author.authors.length > 0">
+            {{ author.authors[0].gender }}
+          </td>
+          <td v-if="author.authors.length > 0">
+            {{ author.authors[0].country }}
+          </td>
+          <td v-if="author.authors.length > 0">
+            {{ author.title }}
+          </td>
+        </template>
       </tr>
     </table>
   </div>
@@ -35,7 +37,11 @@ export default {
   name: "Authors",
   props: ["dataList"],
   setup(props) {
-    return { props };
+    const statusAuthor = (author) => {
+      console.log(author);
+      return author.authors.length > 0 && author.authors[0].birth_year !== "";
+    };
+    return { props, statusAuthor };
   },
 };
 </script>

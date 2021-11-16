@@ -6,12 +6,16 @@
       class="controls-btn"
       :class="{ active: component.class }"
       @click="selectComponent(component.component)"
-      @add-book="addNewBook"
     >
       {{ component.name }}
     </div>
   </div>
-  <component :is="name" :dataList="booksList"></component>
+  <component
+    :is="name"
+    :dataList="basicData"
+    @addBooks="addNewBook"
+    @addAuthors="addNewAuthors"
+  ></component>
 </template>
 
 <script>
@@ -19,7 +23,7 @@ import Books from "./components/Books.vue";
 import Authors from "./components/Authors.vue";
 import BooksForm from "./components/BooksForm.vue";
 import AuthorsForm from "./components/AuthorsForm.vue";
-import { addMockData } from "./mock.js";
+import { addMockData, addMockPoster } from "./mock.js";
 import { onMounted, ref } from "vue";
 import axios from "axios";
 
@@ -32,22 +36,55 @@ export default {
     BooksForm,
   },
   setup() {
-    const booksList = ref([]);
+    const basicData = ref([]);
     let name = ref("Books");
     const componentsNames = ref([
-      { id: 1, component: "Books", name: "Books", class: true },
-      { id: 2, component: "Authors", name: "Authors", class: false },
-      { id: 3, component: "BooksForm", name: "Add Books", class: false },
-      { id: 4, component: "AuthorsForm", name: "Add Authors", class: false },
+      {
+        id: 1,
+        component: "Books",
+        name: "Books",
+        class: true,
+      },
+      {
+        id: 2,
+        component: "Authors",
+        name: "Authors",
+        class: false,
+      },
+      {
+        id: 3,
+        component: "BooksForm",
+        name: "Add Books",
+        class: false,
+      },
+      {
+        id: 4,
+        component: "AuthorsForm",
+        name: "Add Authors",
+        class: false,
+      },
     ]);
     onMounted(() => getBooks());
     const getBooks = () => {
-      axios.get("https://gutendex.com/books/?page=1").then((response) => {
-        booksList.value = addMockData(response.data.results);
-      });
+      axios
+        .get("https://gutendex.com/books/?page=1")
+        .then((response) => {
+          const result = response.data.results;
+          basicData.value = addMockData(result).map((book) =>
+            Object.assign({}, book)
+          );
+        })
+        .then(() => {
+          selectComponent(
+            componentsNames.value[0].name,
+          );
+        });
     };
-    const addNewBook = (d) => {
-      console.log("emit addNewBook", d);
+    const addNewBook = (book) => {
+      basicData.value.unshift(addMockPoster(book.value));
+    };
+    const addNewAuthors = (author) => {
+      basicData.value.unshift(author.value);
     };
     const selectComponent = (component) => {
       name.value = component;
@@ -55,7 +92,15 @@ export default {
         item.class = item.component === component;
       }
     };
-    return { booksList, getBooks, name, componentsNames, selectComponent, addNewBook};
+    return {
+      getBooks,
+      basicData,
+      name,
+      componentsNames,
+      selectComponent,
+      addNewBook,
+      addNewAuthors,
+    };
   },
 };
 </script>
@@ -80,6 +125,10 @@ body {
   background: #dae2e4;
   height: 40px;
   align-items: center;
+}
+
+.controls-btn {
+  border-bottom: 1px solid #dae2e4;
 }
 
 .controls-btn:hover {

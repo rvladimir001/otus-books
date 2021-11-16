@@ -32,10 +32,9 @@
 
 <script>
 import { onMounted, ref, reactive } from "vue";
-
 export default {
   name: "BooksForm",
-  emits: ["add-book"],
+  emits: ["addBooks"],
   setup(props, { emit }) {
     const book = reactive({});
     const ISBN = ref("");
@@ -45,17 +44,25 @@ export default {
     const description = ref("");
     const bookshelves = ref("");
     let newBook = reactive({});
-    function save() {
+    const save = () => {
       newBook.value = {
         ISBN: ISBN,
         title: title,
-        authors: [authors],
+        authors: [
+          {
+            name: authors,
+            birth_year: ref(""),
+            death_year: ref(""),
+            country: ref(""),
+            gender: ref(""),
+          },
+        ],
         price: price,
         description: description,
         bookshelves: [bookshelves],
       };
-      emit("add-book", newBook);
-    }
+      emit("addBooks", newBook);
+    };
     onMounted(() => {
       newBook = Object.assign({}, book);
     });

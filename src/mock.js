@@ -2,7 +2,6 @@ const text =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 const links = [
   "https://u.livelib.ru/reader/WornTime/o/9lec3o5u/o-o.jpeg",
-  "https://olgadubnova.ru/wp-content/uploads/2017/11/2.jpg",
   "https://cdn.fishki.net/upload/post/201407/11/1284739/b8c761206e88ad420bdb0bcce65ff905.jpg",
   "https://i.artfile.ru/2048x1351_956900_[www.ArtFile.ru].jpg",
   "https://i12.fotocdn.net/s114/7022a5b2a040cffc/public_pin_l/2572283319.jpg",
@@ -30,7 +29,7 @@ function addMockData(data) {
     );
     elem["description"] = text;
     elem["price"] = `${Math.floor(Math.random() * (60 - 20) + 20)}$`;
-    elem["poster"] = links[Math.floor(Math.random() * (7 - 1) + 1)];
+    elem["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
     if (elem.authors.length > 0) {
       elem.authors[0]["country"] =
         country[Math.floor(Math.random() * (6 - 1) + 1)];
@@ -40,4 +39,10 @@ function addMockData(data) {
   return data;
 }
 
-export { addMockData };
+function addMockPoster(data) {
+  console.log("data", data);
+  data["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
+  return data;
+}
+
+export { addMockData, addMockPoster };
