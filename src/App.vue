@@ -1,8 +1,7 @@
 <template>
   <header>
-      <h1>OTUS-BOOKS-AAP</h1>
+    <h1>OTUS-BOOKS-AAP</h1>
   </header>
-
   <div class="controls">
     <div
       v-for="component in componentsNames"
@@ -70,14 +69,12 @@ export default {
     ]);
     onMounted(() => getBooks());
     const getBooks = () => {
-      axios
-        .get("https://gutendex.com/books/?page=1")
-        .then((response) => {
-          const result = response.data.results;
-          basicData.value = addMockData(result).map((book) =>
-            Object.assign({}, book)
-          );
-        })
+      axios.get("https://gutendex.com/books/?page=1").then((response) => {
+        const result = response.data.results;
+        basicData.value = addMockData(result).map((book) =>
+          Object.assign({}, book)
+        );
+      });
     };
     const addNewBook = (book) => {
       basicData.value.unshift(addMockPoster(book.value));
@@ -105,16 +102,22 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 
 body {
   margin: 0 !important;
+  height: 100%;
 }
 
 .controls {
@@ -139,34 +142,38 @@ body {
 }
 
 header {
-  background: linear-gradient(90deg,#a64fc5,#4f54e6);
+  background: linear-gradient(90deg, #a64fc5, #4f54e6);
   text-align: left;
   padding: 20px;
 }
+
 h1 {
   color: #fff;
 }
 
 table {
-width: 90%;
+  width: 90%;
   margin: 0 auto;
-border-collapse: collapse;
-color: #000;
+  border-collapse: collapse;
+  color: #000;
 }
 
 th {
-border-bottom: 2px solid #a9a9a9;
-padding: 10px;
-text-align: center;
+  border-bottom: 2px solid #a9a9a9;
+  padding: 10px;
+  text-align: center;
 }
+
 td {
-padding: 10px;
+  padding: 10px;
 }
+
 tr:nth-child(odd) {
-background: white;
+  background: white;
 }
+
 tr:nth-child(even) {
-background: #dae2e4;
+  background: #dae2e4;
 }
 
 ul li {
@@ -209,10 +216,14 @@ ul li textarea:focus {
 }
 
 .btn:hover {
- box-shadow: inset 0px 0px 16px 13px rgba(355,355,355,0.3)
-}
-.btn:active {
-  box-shadow: inset 0px 0px 6px 3px rgba(0,0,0,0.3)
+  box-shadow: inset 0px 0px 16px 13px rgba(355, 355, 355, 0.3);
 }
 
+.btn:active {
+  box-shadow: inset 0px 0px 6px 3px rgba(0, 0, 0, 0.3);
+}
+
+.no-data {
+  padding: 30px;
+}
 </style>

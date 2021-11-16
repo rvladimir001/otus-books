@@ -3,6 +3,7 @@
     <div class="search-block">
           <input type="text" v-model="searchBook" placeholder="Поиск..."/>
     </div>
+    <div v-if="actualBooksList.length > 0">
     <table>
       <tr>
         <th>ISBN</th>
@@ -28,14 +29,17 @@
           </td>
           <td>{{ book.description }}</td>
           <td>{{ book.price }}</td>
-          <td>{{ book.bookshelves.join(", ") }}</td>
+          <td>{{ book.bookshelves.join(" ") }}</td>
           <td>
             <div class="btn" @click="del(book.id)">Удалить</div>
-<!--            <button @click="del(book.id)"> Удалить</button>-->
           </td>
         </template>
       </tr>
     </table>
+      </div>
+    <div v-else>
+      Книга не найдена.
+    </div>
   </div>
 </template>
 <script>

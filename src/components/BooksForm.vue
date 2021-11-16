@@ -61,7 +61,7 @@ export default {
         ],
         price: price,
         description: description,
-        bookshelves: [bookshelves],
+        bookshelves: bookshelves.value.split(","),
       };
       emit("addBooks", newBook);
     };
