@@ -26,7 +26,6 @@
   <div v-if="!saveStatus" class="saved-process">
     <div>Сохранение данных об авторе...</div>
   </div>
-  <div v-if="resultStatus" class="snackbar">Автор добавлен...</div>
 </template>
 
 <script>
@@ -44,7 +43,6 @@ export default {
     const author = reactive({});
     let newAuthor = reactive({});
     let saveStatus = ref(true);
-    let resultStatus = ref(false);
     const clear = () => {
       authors.value = "";
       title.value = "";
@@ -70,8 +68,6 @@ export default {
         await emit("addAuthors", newAuthor);
         clear();
         setTimeout(() => (saveStatus.value = true), 500);
-        setTimeout(() => (resultStatus.value = true), 510);
-        setTimeout(() => (resultStatus.value = false), 1500);
       } catch (e) {
         console.error("Ошибка сохранения новой книги:", e);
       }
@@ -88,7 +84,6 @@ export default {
       title,
       newAuthor,
       saveStatus,
-      resultStatus
     };
   },
 };

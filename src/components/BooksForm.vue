@@ -43,7 +43,6 @@
   <div v-if="!saveStatus" class="saved-process">
     <div>Сохранение новый книги...</div>
   </div>
-  <div v-if="resultStatus" class="snackbar">Книга добавлена...</div>
 </template>
 
 <script>
@@ -62,7 +61,6 @@ export default {
     let bookshelves = ref("");
     let newBook = reactive({});
     let saveStatus = ref(true);
-    let resultStatus = ref(false);
     const clear = () => {
       ISBN.value = "";
       title.value = "";
@@ -90,11 +88,9 @@ export default {
         bookshelves: bookshelves.value.split(","),
       };
       try {
-        await emit("addBooks", newBook);
-        clear();
+        emit("addBooks", newBook);
+        await clear();
         setTimeout(() => (saveStatus.value = true), 500);
-        setTimeout(() => (resultStatus.value = true), 510);
-        setTimeout(() => (resultStatus.value = false), 1500);
       } catch (e) {
         console.error("Ошибка сохранения новой книги:", e);
       }
@@ -112,7 +108,6 @@ export default {
       newBook,
       bookshelves,
       saveStatus,
-      resultStatus,
     };
   },
 };
