@@ -3,24 +3,39 @@
     <div>
       <ul>
         <li>
-          <label><input type="text" v-model="authors" placeholder="ФИО"/></label>
+          <label
+            ><input type="text" v-model="authors" placeholder="ФИО"
+          /></label>
         </li>
         <li>
-          <label><input type="text" v-model="birth_year" placeholder="Год рождения"/></label>
+          <label
+            ><input type="text" v-model="birth_year" placeholder="Год рождения"
+          /></label>
         </li>
         <li>
-          <label><input type="text" v-model="gender" placeholder="Пол"/></label>
+          <label
+            ><input type="text" v-model="gender" placeholder="Пол"
+          /></label>
         </li>
         <li>
-          <label><input type="text" v-model="country" placeholder="Страна"/></label>
+          <label
+            ><input type="text" v-model="country" placeholder="Страна"
+          /></label>
         </li>
         <li>
-          <label><input type="text" v-model="title" placeholder="Книги"/></label>
+          <label
+            ><input type="text" v-model="title" placeholder="Книги"
+          /></label>
         </li>
       </ul>
     </div>
     <div>
       <div class="btn" @click="save">Сохранить</div>
+      <div>
+        <span class="alert" v-if="alertStatus"
+          >Необходимо заполнить все поля!</span
+        >
+      </div>
     </div>
   </div>
   <div v-if="!saveStatus" class="saved-process">
@@ -29,12 +44,12 @@
 </template>
 
 <script>
-import {onMounted, ref, reactive} from "vue";
+import { onMounted, ref, reactive } from "vue";
 
 export default {
   name: "AuthorsForm",
   emits: ["addAuthors"],
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const authors = ref("");
     const birth_year = ref("");
     const gender = ref("");
@@ -43,16 +58,29 @@ export default {
     const author = reactive({});
     let newAuthor = reactive({});
     let saveStatus = ref(true);
+    let alertStatus = ref(false);
     const clear = () => {
       authors.value = "";
       title.value = "";
       birth_year.value = "";
       gender.value = "";
       country.value = "";
-      title.value = "";
+    };
+    const validator = () => {
+      if (
+        authors.value === "" ||
+        title.value === "" ||
+        birth_year.value === "" ||
+        gender.value === "" ||
+        country.value === ""
+      ) {
+        alertStatus.value = true;
+        setTimeout(() => (alertStatus.value = false), 1500);
+        return false;
+      }
+      return true;
     };
     const save = async () => {
-      saveStatus.value = false;
       newAuthor.value = {
         title: title,
         authors: [
@@ -64,12 +92,15 @@ export default {
           },
         ],
       };
-      try {
-        await emit("addAuthors", newAuthor);
-        clear();
-        setTimeout(() => (saveStatus.value = true), 500);
-      } catch (e) {
-        console.error("Ошибка сохранения новой книги:", e);
+      if (validator()) {
+        saveStatus.value = false;
+        try {
+          await emit("addAuthors", newAuthor);
+          clear();
+          setTimeout(() => (saveStatus.value = true), 500);
+        } catch (e) {
+          console.error("Ошибка сохранения новой книги:", e);
+        }
       }
     };
     onMounted(() => {
@@ -84,6 +115,7 @@ export default {
       title,
       newAuthor,
       saveStatus,
+      alertStatus,
     };
   },
 };
@@ -105,13 +137,8 @@ export default {
   margin-top: 20%;
 }
 
-.snackbar {
-  padding: 20px;
-  width: 200px;
-  background: #acbec2;
-  border-radius: 4px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.alert {
+  color: red;
+  font-size: 11px;
 }
 </style>

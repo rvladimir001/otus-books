@@ -38,10 +38,11 @@
     </div>
     <div>
       <div class="btn" @click="save">Сохранить</div>
+      <div><span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span></div>
     </div>
   </div>
   <div v-if="!saveStatus" class="saved-process">
-    <div>Сохранение новый книги...</div>
+    <div v-if="alertStatus">Сохранение новый книги...</div>
   </div>
 </template>
 
@@ -61,6 +62,7 @@ export default {
     let bookshelves = ref("");
     let newBook = reactive({});
     let saveStatus = ref(true);
+    let alertStatus = ref(false)
     const clear = () => {
       ISBN.value = "";
       title.value = "";
@@ -69,8 +71,22 @@ export default {
       description.value = "";
       bookshelves.value = "";
     };
+    const validator = () => {
+      if (
+        ISBN.value === "" ||
+        title.value === "" ||
+        authors.value === "" ||
+        price.value === "" ||
+        description.value === "" ||
+        bookshelves.value === ""
+      ) {
+        alertStatus.value = true;
+        setTimeout(() => (alertStatus.value = false), 1500);
+        return false;
+      }
+      return true;
+    };
     const save = async () => {
-      saveStatus.value = false;
       newBook.value = {
         ISBN: ISBN,
         title: title,
@@ -87,12 +103,15 @@ export default {
         description: description,
         bookshelves: bookshelves.value.split(","),
       };
-      try {
-        emit("addBooks", newBook);
-        await clear();
-        setTimeout(() => (saveStatus.value = true), 500);
-      } catch (e) {
-        console.error("Ошибка сохранения новой книги:", e);
+      if (validator()) {
+        saveStatus.value = false;
+        try {
+          await emit("addBooks", newBook);
+          clear();
+          setTimeout(() => (saveStatus.value = true), 500);
+        } catch (e) {
+          console.error("Ошибка сохранения новой книги:", e);
+        }
       }
     };
     onMounted(() => {
@@ -108,6 +127,7 @@ export default {
       newBook,
       bookshelves,
       saveStatus,
+      alertStatus
     };
   },
 };
@@ -129,13 +149,8 @@ export default {
   margin-top: 20%;
 }
 
-.snackbar {
-  padding: 20px;
-  width: 200px;
-  background: #acbec2;
-  border-radius: 4px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.alert {
+  color: red;
+  font-size: 11px;
 }
 </style>
