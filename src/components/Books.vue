@@ -44,15 +44,17 @@
 </template>
 <script>
 import { ref, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "Books",
-  props: ["dataList"],
-  setup(props) {
+  setup() {
+    const store = useStore();
+    const data = computed(() => store.state.basicData);
     const searchBook = ref("");
     const actualBooksList = computed(() => {
       if (searchBook.value !== "") {
-        return props.dataList.filter((book) => {
+        return data.value.filter((book) => {
           return (
             book.title.indexOf(searchBook.value) !== -1 ||
             book.year.indexOf(searchBook.value) !== -1 ||
@@ -61,16 +63,12 @@ export default {
           );
         });
       }
-      return props.dataList;
+      return data.value;
     });
     const del = (id) => {
-      const idx = props.dataList.indexOf(
-        props.dataList.find((book) => book.id === id)
-      );
-      // eslint-disable-next-line vue/no-mutating-props
-      props.dataList.splice(idx, 1);
+      store.dispatch("deleteBook", id);
     };
-    return { props, searchBook, actualBooksList, del };
+    return { data, searchBook, actualBooksList, del };
   },
 };
 </script>

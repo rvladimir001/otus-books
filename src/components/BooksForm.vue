@@ -55,11 +55,12 @@
 
 <script>
 import { onMounted, ref, reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "BooksForm",
-  emits: ["addBooks"],
-  setup(props, { emit }) {
+  setup() {
+    const store = useStore();
     const book = reactive({});
     let ISBN = ref("");
     let title = ref("");
@@ -112,7 +113,7 @@ export default {
       };
       if (validator()) {
         saveStatus.value = false;
-        emit("addBooks", newBook);
+        store.commit("addBook", newBook);
         setTimeout(() => {
           saveStatus.value = true;
         }, 500);

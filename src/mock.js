@@ -22,7 +22,7 @@ const country = [
 
 const gender = ["Male", "Female"];
 
-function addMockData(data) {
+export function addMockData(data) {
   for (const elem of data) {
     elem["ISBN"] = Math.floor(
       Math.random() * (9999999999999 - 8780882330693) + 8780882330693
@@ -40,10 +40,8 @@ function addMockData(data) {
   return data;
 }
 
-function addMockPoster(data) {
+export function addMockPoster(data) {
   console.log("data", data);
   data["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
   return data;
 }
-
-export { addMockData, addMockPoster };

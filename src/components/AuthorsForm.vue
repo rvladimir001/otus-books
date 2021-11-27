@@ -49,11 +49,13 @@
 
 <script>
 import { onMounted, ref, reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "AuthorsForm",
   emits: ["addAuthors"],
-  setup(props, { emit }) {
+  setup() {
+    const store = useStore();
     const authors = ref("");
     const birth_year = ref("");
     const gender = ref("");
@@ -98,7 +100,7 @@ export default {
       };
       if (validator()) {
         saveStatus.value = false;
-        emit("addAuthors", newAuthor);
+        store.commit("addAuthor", newAuthor);
         setTimeout(() => (saveStatus.value = true), 500);
       }
     };
