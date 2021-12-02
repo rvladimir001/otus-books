@@ -3,35 +3,36 @@
     <div>
       <ul>
         <li>
-          <label><input type="text" v-model="ISBN" placeholder="ISBN" /></label>
+          <label>
+            <input type="text" v-model="ISBN" placeholder="ISBN" />
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="title" placeholder="Наименовние"
-          /></label>
+          <label>
+            <input type="text" v-model="title" placeholder="Наименовние"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="authors" placeholder="Автор"
-          /></label>
+          <label>
+            <input type="text" v-model="authors" placeholder="Автор"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="price" placeholder="Цена"
-          /></label>
+          <label>
+            <input type="text" v-model="price" placeholder="Цена"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="bookshelves" placeholder="Категория"
-          /></label>
+          <label>
+            <input type="text" v-model="bookshelves" placeholder="Категория"/>
+          </label>
         </li>
         <li>
           <label>
             <textarea
               type="text"
               v-model="description"
-              placeholder="Краткое описание"
-            />
+              placeholder="Краткое описание"/>
           </label>
         </li>
       </ul>
@@ -39,9 +40,7 @@
         <div class="save-block">
           <div class="btn" @click="save">Сохранить</div>
           <div>
-            <span class="alert" v-if="alertStatus"
-              >Необходимо заполнить все поля!</span
-            >
+            <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
           </div>
         </div>
         <div class="btn" @click="clear">Очистить</div>
@@ -55,11 +54,12 @@
 
 <script>
 import { onMounted, ref, reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "BooksForm",
-  emits: ["addBooks"],
-  setup(props, { emit }) {
+  setup() {
+    const store = useStore();
     const book = reactive({});
     let ISBN = ref("");
     let title = ref("");
@@ -95,8 +95,8 @@ export default {
     };
     const save = () => {
       newBook.value = {
-        ISBN: ISBN,
-        title: title,
+        ISBN,
+        title,
         authors: [
           {
             name: authors,
@@ -106,13 +106,13 @@ export default {
             gender: ref(""),
           },
         ],
-        price: price,
-        description: description,
+        price,
+        description,
         bookshelves: bookshelves.value.split(","),
       };
       if (validator()) {
         saveStatus.value = false;
-        emit("addBooks", newBook);
+        store.commit("addBook", newBook);
         setTimeout(() => {
           saveStatus.value = true;
         }, 500);
