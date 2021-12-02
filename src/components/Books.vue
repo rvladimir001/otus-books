@@ -21,7 +21,9 @@
             <td>{{ book.ISBN }}</td>
             <td>{{ book.title }}</td>
             <td>
-              <span v-for="athor in book.authors" :key="athor.name">{{athor.name }}</span>
+              <span v-for="athor in book.authors" :key="athor.name">{{
+                athor.name
+              }}</span>
             </td>
             <td>{{ book.year }}</td>
             <td>

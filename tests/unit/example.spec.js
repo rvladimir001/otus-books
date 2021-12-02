@@ -1,12 +1,26 @@
-import { shallowMount } from "@vue/test-utils";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import App from "@/App.vue";
-import { useStore } from "vuex";
+import Vuex from "vuex";
+
+const localVue = createLocalVue();
+
+localVue.use(Vuex)
 
 describe("App.vue", () => {
-  const store = useStore();
+  let actions;
+  let store;
+
+  beforeEach(() => {
+    actions = {
+      getBooks: jest.fn(),
+    };
+    store = new Vuex.Store({
+      actions,
+    });
+  });
+
   it("renders App", () => {
-    //пытаюсь в shallowMount передать store
-    const wrapper = shallowMount(App, { store });
+    const wrapper = shallowMount(App, { store, localVue });
     expect(wrapper.text()).toMatch("OTUS-BOOKS-APP");
   });
 });
