@@ -1,17 +1,12 @@
-import {mount} from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import App from "@/App.vue";
-import {useStore} from "vuex";
-
-// import Authors from "@/components/Authors.vue";
-
-// eslint-disable-next-line no-undef
-
+import { useStore } from "vuex";
 
 describe("App.vue", () => {
-  let store;
-  store = useStore();
+  const store = useStore();
   it("renders App", () => {
-    const wrapper = mount(App, { store });
+    //пытаюсь в shallowMount передать store
+    const wrapper = shallowMount(App, { store });
     expect(wrapper.text()).toMatch("OTUS-BOOKS-APP");
   });
 });
