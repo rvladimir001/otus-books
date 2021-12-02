@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>OTUS-BOOKS-AAP</h1>
+    <h1>OTUS-BOOKS-APP</h1>
   </header>
   <div class="controls">
     <div

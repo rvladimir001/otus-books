@@ -11,21 +11,11 @@
         </tr>
         <tr v-for="author in data" :key="author">
           <template v-if="statusAuthor(author)">
-            <td>
-              {{ author.authors[0].name }}
-            </td>
-            <td>
-              {{ author.authors[0].birth_year }}
-            </td>
-            <td>
-              {{ author.authors[0].gender }}
-            </td>
-            <td>
-              {{ author.authors[0].country }}
-            </td>
-            <td>
-              {{ author.title }}
-            </td>
+            <td>{{ author.authors[0].name }}</td>
+            <td>{{ author.authors[0].birth_year }}</td>
+            <td>{{ author.authors[0].gender }}</td>
+            <td>{{ author.authors[0].country }}</td>
+            <td>{{ author.title }}</td>
           </template>
         </tr>
       </table>

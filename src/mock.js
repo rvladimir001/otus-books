@@ -20,20 +20,21 @@ const country = [
   "France",
 ];
 
+function numberGen(start, end) {
+  return Math.floor(Math.random() * (end - start) + start);
+}
+
 const gender = ["Male", "Female"];
 
 export function addMockData(data) {
   for (const elem of data) {
-    elem["ISBN"] = Math.floor(
-      Math.random() * (9999999999999 - 8780882330693) + 8780882330693
-    );
+    elem["ISBN"] = numberGen(8780882330693, 9999999999999);
     elem["description"] = text;
-    elem["price"] = `${Math.floor(Math.random() * (60 - 20) + 20)}$`;
-    elem["year"] = `${Math.floor(Math.random() * (2000 - 1760) + 1760)}`;
-    elem["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
+    elem["price"] = `${numberGen(20, 60)}$`;
+    elem["year"] = `${numberGen(1760, 2000)}`;
+    elem["poster"] = links[numberGen(1, 6)];
     if (elem.authors.length > 0) {
-      elem.authors[0]["country"] =
-        country[Math.floor(Math.random() * (6 - 1) + 1)];
+      elem.authors[0]["country"] = country[numberGen(1, 6)];
       elem.authors[0]["gender"] = gender[Number(Math.random() >= 0.5)];
     }
   }
@@ -41,7 +42,6 @@ export function addMockData(data) {
 }
 
 export function addMockPoster(data) {
-  console.log("data", data);
   data["poster"] = links[Math.floor(Math.random() * (6 - 1) + 1)];
   return data;
 }

@@ -3,38 +3,36 @@
     <div>
       <ul>
         <li>
-          <label
-            ><input type="text" v-model="authors" placeholder="ФИО"
-          /></label>
+          <label>
+            <input type="text" v-model="authors" placeholder="ФИО"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="birth_year" placeholder="Год рождения"
-          /></label>
+          <label>
+            <input type="text" v-model="birth_year" placeholder="Год рождения"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="gender" placeholder="Пол"
-          /></label>
+          <label>
+            <input type="text" v-model="gender" placeholder="Пол"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="country" placeholder="Страна"
-          /></label>
+          <label>
+            <input type="text" v-model="country" placeholder="Страна"/>
+          </label>
         </li>
         <li>
-          <label
-            ><input type="text" v-model="title" placeholder="Книги"
-          /></label>
+          <label>
+            <input type="text" v-model="title" placeholder="Книги"/>
+          </label>
         </li>
       </ul>
       <div class="control-panel">
         <div class="save-block">
           <div class="btn" @click="save">Сохранить</div>
           <div>
-            <span class="alert" v-if="alertStatus"
-              >Необходимо заполнить все поля!</span
-            >
+            <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
           </div>
         </div>
         <div class="btn" @click="clear">Очистить</div>
@@ -73,13 +71,7 @@ export default {
       country.value = "";
     };
     const validator = () => {
-      if (
-        authors.value === "" ||
-        title.value === "" ||
-        birth_year.value === "" ||
-        gender.value === "" ||
-        country.value === ""
-      ) {
+      if (!country.value) {
         alertStatus.value = true;
         setTimeout(() => (alertStatus.value = false), 1500);
         return false;
@@ -92,9 +84,9 @@ export default {
         authors: [
           {
             name: authors,
-            birth_year: birth_year,
-            gender: gender,
-            country: country,
+            birth_year,
+            gender,
+            country,
           },
         ],
       };
