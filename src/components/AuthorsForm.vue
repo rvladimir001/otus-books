@@ -35,14 +35,14 @@
       </ul>
       <div class="control-panel">
         <div class="save-block">
-          <div class="btn" @click="save">Сохранить</div>
+          <div class="btn save" @click="save">Сохранить</div>
           <div>
             <span class="alert" v-if="alertStatus"
               >Необходимо заполнить все поля!</span
             >
           </div>
         </div>
-        <div class="btn" @click="clear">Очистить</div>
+        <div class="btn clear" @click="clear">Очистить</div>
       </div>
     </div>
   </div>
