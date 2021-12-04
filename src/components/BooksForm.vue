@@ -1,4 +1,5 @@
 <template>
+  <h3>Форма добавления книг</h3>
   <div>
     <div>
       <ul>
@@ -160,5 +161,8 @@ export default {
 .alert {
   color: red;
   font-size: 11px;
+}
+h3 {
+  margin-left: 20px;
 }
 </style>

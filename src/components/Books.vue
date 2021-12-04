@@ -1,9 +1,11 @@
 <template>
   <div>
     <div class="search-block">
+      <h3>Список книг</h3>
       <input type="text" v-model="searchBook" placeholder="Поиск..." />
     </div>
     <div v-if="actualBooksList.length > 0">
+
       <table>
         <tr>
           <th>ISBN</th>
@@ -88,5 +90,8 @@ export default {
 .search-block input:focus {
   outline: 0;
   outline-offset: 0;
+}
+h3 {
+  margin-left: 20px;
 }
 </style>
