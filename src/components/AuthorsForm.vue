@@ -1,41 +1,48 @@
 <template>
+  <h3>Форма добавления авторов</h3>
   <div>
     <div>
       <ul>
         <li>
           <label>
-            <input type="text" v-model="authors" placeholder="ФИО"/>
+            <input type="text" v-model="authors" placeholder="ФИО" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="birth_year" placeholder="Год рождения"/>
+            <input
+              type="text"
+              v-model="birth_year"
+              placeholder="Год рождения"
+            />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="gender" placeholder="Пол"/>
+            <input type="text" v-model="gender" placeholder="Пол" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="country" placeholder="Страна"/>
+            <input type="text" v-model="country" placeholder="Страна" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="title" placeholder="Книги"/>
+            <input type="text" v-model="title" placeholder="Книги" />
           </label>
         </li>
       </ul>
       <div class="control-panel">
         <div class="save-block">
-          <div class="btn" @click="save">Сохранить</div>
+          <div class="btn save" @click="save">Сохранить</div>
           <div>
-            <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
+            <span class="alert" v-if="alertStatus"
+              >Необходимо заполнить все поля!</span
+            >
           </div>
         </div>
-        <div class="btn" @click="clear">Очистить</div>
+        <div class="btn clear" @click="clear">Очистить</div>
       </div>
     </div>
   </div>
@@ -134,5 +141,8 @@ export default {
 .alert {
   color: red;
   font-size: 11px;
+}
+h3 {
+  margin-left: 20px;
 }
 </style>

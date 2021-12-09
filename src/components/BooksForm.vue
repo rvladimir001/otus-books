@@ -1,4 +1,5 @@
 <template>
+  <h3>Форма добавления книг</h3>
   <div>
     <div>
       <ul>
@@ -9,22 +10,22 @@
         </li>
         <li>
           <label>
-            <input type="text" v-model="title" placeholder="Наименовние"/>
+            <input type="text" v-model="title" placeholder="Наименовние" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="authors" placeholder="Автор"/>
+            <input type="text" v-model="authors" placeholder="Автор" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="price" placeholder="Цена"/>
+            <input type="text" v-model="price" placeholder="Цена" />
           </label>
         </li>
         <li>
           <label>
-            <input type="text" v-model="bookshelves" placeholder="Категория"/>
+            <input type="text" v-model="bookshelves" placeholder="Категория" />
           </label>
         </li>
         <li>
@@ -32,18 +33,21 @@
             <textarea
               type="text"
               v-model="description"
-              placeholder="Краткое описание"/>
+              placeholder="Краткое описание"
+            />
           </label>
         </li>
       </ul>
       <div class="control-panel">
         <div class="save-block">
-          <div class="btn" @click="save">Сохранить</div>
+          <div class="btn save" @click="save">Сохранить</div>
           <div>
-            <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
+            <span class="alert" v-if="alertStatus"
+              >Необходимо заполнить все поля!</span
+            >
           </div>
         </div>
-        <div class="btn" @click="clear">Очистить</div>
+        <div class="btn clear" @click="clear">Очистить</div>
       </div>
     </div>
   </div>
@@ -157,5 +161,8 @@ export default {
 .alert {
   color: red;
   font-size: 11px;
+}
+h3 {
+  margin-left: 20px;
 }
 </style>

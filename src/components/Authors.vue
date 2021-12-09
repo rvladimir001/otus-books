@@ -1,4 +1,5 @@
 <template>
+  <h3>Список авторов</h3>
   <div>
     <div v-if="data.length > 0">
       <table>
@@ -40,4 +41,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h3 {
+    text-align: left;
+  margin-left: 20px;
+}
+</style>

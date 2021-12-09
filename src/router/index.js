@@ -6,6 +6,11 @@ import AuthorsForm from "../components/AuthorsForm";
 
 const routes = [
   {
+    path: "/",
+    name: "Books",
+    component: Books,
+  },
+  {
     path: "/books",
     name: "Books",
     component: Books,
