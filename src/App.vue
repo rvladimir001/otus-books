@@ -13,7 +13,9 @@
       <router-link :to="{ path: `${link.link}` }">{{ link.name }}</router-link>
     </div>
   </div>
-  <router-view />
+  <transition name="component-fade" mode="out-in">
+    <router-view />
+  </transition>
 </template>
 
 <script>
@@ -213,5 +215,25 @@ ul li textarea:focus {
   width: 350px;
   text-align: center;
   margin: auto;
+}
+
+.mode-fade-enter-active,
+.mode-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.mode-fade-enter-from,
+.mode-fade-leave-to {
+  opacity: 0;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.component-fade-enter-from,
+.component-fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -42,9 +42,7 @@
         <div class="save-block">
           <div class="btn save" @click="save">Сохранить</div>
           <div>
-            <span class="alert" v-if="alertStatus"
-              >Необходимо заполнить все поля!</span
-            >
+            <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
           </div>
         </div>
         <div class="btn clear" @click="clear">Очистить</div>
