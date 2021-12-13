@@ -6,36 +6,40 @@
         <ul>
           <li>
             <label>
-              <input type="text" v-model="ISBN" placeholder="ISBN"/>
+              <input type="text" v-model="ISBN" placeholder="ISBN" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="title" placeholder="Наименовние"/>
+              <input type="text" v-model="title" placeholder="Наименовние" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="authors" placeholder="Автор"/>
+              <input type="text" v-model="authors" placeholder="Автор" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="price" placeholder="Цена"/>
+              <input type="text" v-model="price" placeholder="Цена" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="bookshelves" placeholder="Категория"/>
+              <input
+                type="text"
+                v-model="bookshelves"
+                placeholder="Категория"
+              />
             </label>
           </li>
           <li>
             <label>
-            <textarea
+              <textarea
                 type="text"
                 v-model="description"
                 placeholder="Краткое описание"
-            />
+              />
             </label>
           </li>
         </ul>
@@ -57,8 +61,8 @@
 </template>
 
 <script>
-import {onMounted, ref, reactive} from "vue";
-import {useStore} from "vuex";
+import { onMounted, ref, reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "BooksForm",
@@ -84,12 +88,12 @@ export default {
     };
     const validator = () => {
       if (
-          ISBN.value === "" ||
-          title.value === "" ||
-          authors.value === "" ||
-          price.value === "" ||
-          description.value === "" ||
-          bookshelves.value === ""
+        ISBN.value === "" ||
+        title.value === "" ||
+        authors.value === "" ||
+        price.value === "" ||
+        description.value === "" ||
+        bookshelves.value === ""
       ) {
         alertStatus.value = true;
         setTimeout(() => (alertStatus.value = false), 1500);

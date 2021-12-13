@@ -6,31 +6,31 @@
         <ul>
           <li>
             <label>
-              <input type="text" v-model="authors" placeholder="ФИО"/>
+              <input type="text" v-model="authors" placeholder="ФИО" />
             </label>
           </li>
           <li>
             <label>
               <input
-                  type="text"
-                  v-model="birth_year"
-                  placeholder="Год рождения"
+                type="text"
+                v-model="birth_year"
+                placeholder="Год рождения"
               />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="gender" placeholder="Пол"/>
+              <input type="text" v-model="gender" placeholder="Пол" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="country" placeholder="Страна"/>
+              <input type="text" v-model="country" placeholder="Страна" />
             </label>
           </li>
           <li>
             <label>
-              <input type="text" v-model="title" placeholder="Книги"/>
+              <input type="text" v-model="title" placeholder="Книги" />
             </label>
           </li>
         </ul>
@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import {onMounted, ref, reactive} from "vue";
-import {useStore} from "vuex";
+import { onMounted, ref, reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "AuthorsForm",

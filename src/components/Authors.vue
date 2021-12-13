@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import {useStore} from "vuex";
-import {computed} from "vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   name: "Authors",
@@ -41,7 +41,7 @@ export default {
     const statusAuthor = (author) => {
       return author.authors.length > 0 && author.authors[0].birth_year !== "";
     };
-    return {data, statusAuthor};
+    return { data, statusAuthor };
   },
 };
 </script>
