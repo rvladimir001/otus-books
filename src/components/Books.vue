@@ -4,44 +4,49 @@
       <h3>Список книг</h3>
       <input type="text" v-model="searchBook" placeholder="Поиск..." />
     </div>
-    <div v-if="actualBooksList.length > 0">
-
-      <table>
-        <tr>
-          <th>ISBN</th>
-          <th>Название</th>
-          <th>Автор</th>
-          <th>Год выпуска</th>
-          <th>Постер</th>
-          <th>Краткое описание</th>
-          <th>Цена</th>
-          <th>Категория</th>
-          <th>Действие</th>
-        </tr>
-        <tr v-for="book in actualBooksList" :key="book.id">
-          <template v-if="book.price">
-            <td>{{ book.ISBN }}</td>
-            <td>{{ book.title }}</td>
-            <td>
-              <span v-for="athor in book.authors" :key="athor.name">{{
-                athor.name
-              }}</span>
-            </td>
-            <td>{{ book.year }}</td>
-            <td>
-              <img :src="book.poster" style="width: 200px" alt="Постер книги" />
-            </td>
-            <td>{{ book.description }}</td>
-            <td>{{ book.price }}</td>
-            <td>{{ book.bookshelves.join(" ") }}</td>
-            <td>
-              <div class="btn" @click="del(book.id)">Удалить</div>
-            </td>
-          </template>
-        </tr>
-      </table>
-    </div>
-    <div v-else>Книга не найдена.</div>
+    <transition name="mode-fade" mode="out-in">
+      <div v-if="actualBooksList.length > 0">
+        <table>
+          <transition-group tag="tbody" name="table-row">
+            <tr>
+              <th>ISBN</th>
+              <th>Название</th>
+              <th>Автор</th>
+              <th>Год выпуска</th>
+              <th>Постер</th>
+              <th>Краткое описание</th>
+              <th>Цена</th>
+              <th>Категория</th>
+              <th>Действие</th>
+            </tr>
+            <tr v-for="book in actualBooksList" :key="book.id">
+              <template v-if="book.price">
+                <td>{{ book.ISBN }}</td>
+                <td>{{ book.title }}</td>
+                <td>
+                  <span v-for="athor in book.authors" :key="athor.name">{{ athor.name }}</span>
+                </td>
+                <td>{{ book.year }}</td>
+                <td>
+                  <img
+                    :src="book.poster"
+                    style="width: 200px"
+                    alt="Постер книги"
+                  />
+                </td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.price }}</td>
+                <td>{{ book.bookshelves.join(" ") }}</td>
+                <td>
+                  <div class="btn" @click="del(book.id)">Удалить</div>
+                </td>
+              </template>
+            </tr>
+          </transition-group>
+        </table>
+      </div>
+      <div v-else>Книга не найдена.</div>
+    </transition>
   </div>
 </template>
 <script>
@@ -79,19 +84,38 @@ export default {
 .search-block {
   text-align: left;
 }
+
 .search-block input {
   width: 300px;
   border: none;
   border-bottom: 1px solid #dae2e4;
   margin: 20px;
 }
+
 .search-block input:active,
 .search-block input:hover,
 .search-block input:focus {
   outline: 0;
   outline-offset: 0;
 }
+
 h3 {
   margin-left: 20px;
+}
+
+.table-row {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.tbody-enter-active,
+.tbody-leave-active {
+  transition: all 1s ease;
+}
+
+.tbody-enter-from,
+.tbody-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

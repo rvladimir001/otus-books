@@ -1,58 +1,62 @@
 <template>
-  <h3>Форма добавления книг</h3>
   <div>
+    <h3>Форма добавления книг</h3>
     <div>
-      <ul>
-        <li>
-          <label>
-            <input type="text" v-model="ISBN" placeholder="ISBN" />
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="text" v-model="title" placeholder="Наименовние" />
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="text" v-model="authors" placeholder="Автор" />
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="text" v-model="price" placeholder="Цена" />
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="text" v-model="bookshelves" placeholder="Категория" />
-          </label>
-        </li>
-        <li>
-          <label>
-            <textarea
-              type="text"
-              v-model="description"
-              placeholder="Краткое описание"
-            />
-          </label>
-        </li>
-      </ul>
-      <div class="control-panel">
-        <div class="save-block">
-          <div class="btn save" @click="save">Сохранить</div>
-          <div>
-            <span class="alert" v-if="alertStatus"
-              >Необходимо заполнить все поля!</span
-            >
+      <div>
+        <ul>
+          <li>
+            <label>
+              <input type="text" v-model="ISBN" placeholder="ISBN" />
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="text" v-model="title" placeholder="Наименовние" />
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="text" v-model="authors" placeholder="Автор" />
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="text" v-model="price" placeholder="Цена" />
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                type="text"
+                v-model="bookshelves"
+                placeholder="Категория"
+              />
+            </label>
+          </li>
+          <li>
+            <label>
+              <textarea
+                type="text"
+                v-model="description"
+                placeholder="Краткое описание"
+              />
+            </label>
+          </li>
+        </ul>
+        <div class="control-panel">
+          <div class="save-block">
+            <div class="btn save" @click="save">Сохранить</div>
+            <div>
+              <span class="alert" v-if="alertStatus">Необходимо заполнить все поля!</span>
+            </div>
           </div>
+          <div class="btn clear" @click="clear">Очистить</div>
         </div>
-        <div class="btn clear" @click="clear">Очистить</div>
       </div>
     </div>
-  </div>
-  <div v-if="!saveStatus" class="saved-process">
-    <div>Сохранение новый книги...</div>
+    <div v-if="!saveStatus" class="saved-process">
+      <div>Сохранение новый книги...</div>
+    </div>
   </div>
 </template>
 
@@ -162,6 +166,7 @@ export default {
   color: red;
   font-size: 11px;
 }
+
 h3 {
   margin-left: 20px;
 }

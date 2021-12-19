@@ -1,33 +1,38 @@
 <template>
-  <h3>Список авторов</h3>
   <div>
-    <div v-if="data.length > 0">
-      <table>
-        <tr>
-          <th>Автор</th>
-          <th>Год рожения</th>
-          <th>Пол</th>
-          <th>Страна</th>
-          <th>Книги</th>
-        </tr>
-        <tr v-for="author in data" :key="author">
-          <template v-if="statusAuthor(author)">
-            <td>{{ author.authors[0].name }}</td>
-            <td>{{ author.authors[0].birth_year }}</td>
-            <td>{{ author.authors[0].gender }}</td>
-            <td>{{ author.authors[0].country }}</td>
-            <td>{{ author.title }}</td>
-          </template>
-        </tr>
-      </table>
+    <h3>Список авторов</h3>
+    <div>
+      <transition name="mode-fade" mode="out-in">
+        <div v-if="data.length > 0">
+          <table>
+            <tr>
+              <th>Автор</th>
+              <th>Год рожения</th>
+              <th>Пол</th>
+              <th>Страна</th>
+              <th>Книги</th>
+            </tr>
+            <tr v-for="author in data" :key="author">
+              <template v-if="statusAuthor(author)">
+                <td>{{ author.authors[0].name }}</td>
+                <td>{{ author.authors[0].birth_year }}</td>
+                <td>{{ author.authors[0].gender }}</td>
+                <td>{{ author.authors[0].country }}</td>
+                <td>{{ author.title }}</td>
+              </template>
+            </tr>
+          </table>
+        </div>
+        <div class="no-data" v-else>Нет списка авторов.</div>
+      </transition>
     </div>
-    <div class="no-data" v-else>Нет списка авторов.</div>
   </div>
 </template>
 
 <script>
 import { useStore } from "vuex";
 import { computed } from "vue";
+
 export default {
   name: "Authors",
   setup() {
@@ -43,7 +48,7 @@ export default {
 
 <style scoped>
 h3 {
-    text-align: left;
+  text-align: left;
   margin-left: 20px;
 }
 </style>
